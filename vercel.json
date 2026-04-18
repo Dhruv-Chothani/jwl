@@ -3,9 +3,7 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "functions": {
-    "api/server.js": {
-      "runtime": "@vercel/node"
-    }
+    "api/server.js": {}
   },
   "rewrites": [
     {
