@@ -1,14 +1,14 @@
-import { Link } from "@tanstack/react-router";
+import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/collections", label: "Collections" },
-  { to: "/about", label: "Atelier" },
-  { to: "/journal", label: "Journal" },
-  { to: "/contact", label: "Contact" },
-] as const;
+  { to: "/", label: "Home", end: true },
+  { to: "/collections", label: "Collections", end: false },
+  { to: "/about", label: "Atelier", end: false },
+  { to: "/journal", label: "Journal", end: false },
+  { to: "/contact", label: "Contact", end: false },
+];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -23,15 +23,18 @@ export function SiteHeader() {
 
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
-            <Link
+            <NavLink
               key={l.to}
               to={l.to}
-              className="text-sm tracking-wide text-foreground/75 transition-colors hover:text-gold"
-              activeProps={{ className: "text-gold" }}
-              activeOptions={{ exact: l.to === "/" }}
+              end={l.end}
+              className={({ isActive }) =>
+                `text-sm tracking-wide transition-colors hover:text-gold ${
+                  isActive ? "text-gold" : "text-foreground/75"
+                }`
+              }
             >
               {l.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 
@@ -48,16 +51,17 @@ export function SiteHeader() {
         <div className="md:hidden border-t border-border/60 bg-ivory">
           <nav className="flex flex-col px-6 py-4">
             {links.map((l) => (
-              <Link
+              <NavLink
                 key={l.to}
                 to={l.to}
+                end={l.end}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm tracking-wide"
-                activeProps={{ className: "text-gold" }}
-                activeOptions={{ exact: l.to === "/" }}
+                className={({ isActive }) =>
+                  `py-3 text-sm tracking-wide ${isActive ? "text-gold" : ""}`
+                }
               >
                 {l.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </div>

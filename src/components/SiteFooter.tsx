@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 
 const exploreLinks = [
   { to: "/", label: "Home" },
@@ -6,7 +6,7 @@ const exploreLinks = [
   { to: "/about", label: "Our Atelier" },
   { to: "/journal", label: "Journal" },
   { to: "/contact", label: "Private Appointments" },
-] as const;
+];
 
 export function SiteFooter() {
   return (
@@ -24,11 +24,7 @@ export function SiteFooter() {
           <ul className="mt-4 space-y-3 text-sm">
             {exploreLinks.map((l) => (
               <li key={l.to}>
-                <Link
-                  to={l.to}
-                  className="transition-colors hover:text-gold-soft"
-                  activeOptions={{ exact: l.to === "/" }}
-                >
+                <Link to={l.to} className="transition-colors hover:text-gold-soft">
                   {l.label}
                 </Link>
               </li>

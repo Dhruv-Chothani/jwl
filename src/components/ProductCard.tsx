@@ -1,13 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import type { Product } from "@/data/products";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link
-      to="/products/$productId"
-      params={{ productId: product.id }}
-      className="group block"
-    >
+    <Link to={`/products/${product.id}`} className="group block">
       <div className="relative overflow-hidden bg-muted aspect-[4/5]">
         <img
           src={product.image}
